@@ -4,7 +4,7 @@
 <!--[if IE 9 ]><html class="no-js ie ie9" lang="en"> <![endif]-->
 <!--[if (gte IE 8)|!(IE)]><!--><html class="no-js" lang="en"> <!--<![endif]-->
 <head>
-   %= include site/head_common.html.ep
+   %= include 'site/head_common.html.ep'
 </head>
 
 <body>
@@ -67,14 +67,14 @@
             <%= content %>
    		</div> <!-- end main -->
 
-         %= include site/sidebar.html.ep
+         %= include 'site/sidebar.html.ep'
 
    	</div> <!-- end row -->
 
    </div> <!-- end content-wrap -->
 
 
-   %= include site/footer.html.ep
+   %= include 'site/footer.html.ep'
 
    <!-- Java Script
    ================================================== -->
