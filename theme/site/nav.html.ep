@@ -1,0 +1,24 @@
+      <!-- site/nav.html.ep -->
+      <nav id="nav-wrap">
+
+         <a class="mobile-btn" href="#nav-wrap" title="Show navigation">Show Menu</a>
+         <a class="mobile-btn" href="#" title="Hide navigation">Hide Menu</a>
+
+         <div class="row">
+
+            %# TODO give the current page's <li> class "current"
+            % if ( my @nav_links = $site->nav( 'main' ) ) {
+            <ul id="nav" class="nav">
+               <!-- li><a href="index.html">Home</a></li -->
+               % for my $nav ( @nav_links ) {
+               <li>
+                   <a href="<%= $nav->href %>"><%= $nav->text %></a>
+               </li>
+               % }
+            </ul> <!-- end #nav -->
+            % }
+
+        </div><!--row-->
+
+      </nav> <!-- end #nav-wrap -->
+
