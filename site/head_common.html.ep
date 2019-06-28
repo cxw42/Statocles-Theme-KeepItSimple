@@ -39,7 +39,7 @@
 
    <!-- Script
    ================================================== -->
-   <script src="js/modernizr.js"></script>
+   <script src="/theme/js/modernizr.js"></script>
 
    % for my $link ( $site->links( 'script' ) ) {
    <script src="<%= $link->href %>"></script>
