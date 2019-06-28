@@ -34,6 +34,10 @@ site:
         # title: This is the title of the site, shown in the <title> tag
         title: 'My Statocles Site'
 
+        # data: Arbitrary extra hashref
+        data:
+           tagline: 'Yes, indeed!'
+
         # base_url: This is the base URL the site will be deployed to. It
         # should be a full URL, and may contain a path, like:
         #
