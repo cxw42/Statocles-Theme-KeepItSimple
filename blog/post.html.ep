@@ -1,4 +1,4 @@
-<!-- blog/post.html.ep-->
+            <!-- blog/post.html.ep-->
             <article class="entry">
 
                <header class="entry-header">
@@ -114,15 +114,19 @@
             <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
             % }
 
-            <!-- content tags - not sure what this is for
+            <!-- content tags - this is the list of tags for the sidebar
             ================================================== -->
             % content tags => begin
-                <nav id="tags">
-                    <h1>Tags</h1>
-                    <ul class="list-inline">
-                    % for my $tag ( $app->tags ) {
-                        <li><a href="<%= $tag->href %>"><%== $tag->text %></a></li>
-                    % }
-                    </ul>
-                </nav>
+               <div class="widget widget_tags">
+                  <h3>Post Tags.</h3>
+
+                  <div class="tagcloud group">
+                  % for my $tag ( $self->tags ) {
+                  %# $self => only the tags for this post
+                        <a href="<%= $tag->href %>"><%== $tag->text %></a>
+                  % }
+                  </div>
+               </div>
             % end
+
+            <!-- end blog/post.html.ep -->

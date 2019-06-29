@@ -1,0 +1,22 @@
+   <!-- site/header.html.ep -->
+   <!-- Header
+   ================================================== -->
+   <header id="top">
+
+      <div class="row">
+
+         <div class="header-content twelve columns">
+
+            <h1 id="logo-text"><a href="/index.html" title=""><%= $site->title %></a></h1>
+            % if($site->data->{tagline}) {
+            <p id="intro"><%= $site->data->{tagline} %></p>
+            % }
+
+         </div>
+
+      </div>
+
+      %= include 'site/nav.html.ep'
+
+   </header> <!-- Header End -->
+   <!-- end site/header.html.ep -->
