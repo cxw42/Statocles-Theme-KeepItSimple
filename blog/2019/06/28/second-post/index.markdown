@@ -1,7 +1,7 @@
 ---
 status: published
 title: Second post
-tags: tag1, tag2
+tags: ['tag1', 'tag2', 'foo<&>bar']
 ---
 This is the second post.
 This is the second post.

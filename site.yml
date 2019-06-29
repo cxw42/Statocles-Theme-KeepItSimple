@@ -59,9 +59,9 @@ site:
             page:
                 $ref: 'page_app'
 
-            # static: This app does no processing at all. Good for images
-            static:
-                $ref: 'static_app'
+            ## static: This app does no processing at all. Good for images
+            #static:
+            #    $ref: 'static_app'
 
         # plugins: These are plugins that can add features and alter the
         # content of the site.
