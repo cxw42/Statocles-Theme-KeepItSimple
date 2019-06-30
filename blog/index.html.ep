@@ -1,8 +1,9 @@
          <!-- blog/index.html.ep-->
 
-         <!-- not sure what this is for -->
+         <!-- for descriptions of tags - see
+            https://metacpan.org/pod/Statocles::App::Blog#tag_text -->
          % if ( my $tag_text = $self->data->{ tag_text } ) {
-         <%= markdown $tag_text %>
+            <%= markdown $tag_text %>
          % }
 
          % for my $page ( @$pages ) {
@@ -17,8 +18,10 @@
                   <div class="entry-meta">
                      <ul>
                         <li><%= $page->date->strftime('%Y-%m-%d') %></li>
+                        <!-- We do not yet implement categories
                         <span class="meta-sep">&bull;</span>
                         <li><a href="#" title="" rel="category tag">Ghost</a></li>
+                        -->
                         % if ( $page->author ) {
                            <span class="meta-sep">&bull;</span>
                            <span class="author"><%= $page->author %></span>
@@ -34,15 +37,6 @@
                     </p>
                   % }
 
-                 % if ( $page->links( 'crosspost' ) ) {
-                 <p>Originally posted as:
-                     % for my $link ( $page->links( 'crosspost' ) ) {
-                         <a href="<%= $link->href %>">
-                             <em><%= $page->title %></em> on <%= $link->title %>.
-                         </a>
-                     % }
-                 </p>
-                 % }
                </header>
 
                <div class="entry-content">
@@ -69,16 +63,18 @@
 
          <!-- content tags - this is the list of tags for the sidebar
          ================================================== -->
-         % content tags => begin
-            <div class="widget widget_tags">
-               <h3>Tags.</h3>
+         % if( $app->tags ) {
+            % content tags => begin
+               <div class="widget widget_tags">
+                  <h3>Tags.</h3>
 
-               <div class="tagcloud group">
-               % for my $tag ( $app->tags ) {    # $app => all known tags
-                     <a href="<%= $tag->href %>"><%== $tag->text %></a>
-               % }
+                  <div class="tagcloud group">
+                  % for my $tag ( $app->tags ) {    # $app => all known tags
+                        <a href="<%= $tag->href %>"><%== $tag->text %></a>
+                  % }
+                  </div>
                </div>
-            </div>
-         % end
+            % end
+         % }
 
          <!-- end blog/index.html.ep -->

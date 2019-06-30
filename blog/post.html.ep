@@ -10,11 +10,13 @@
                   <div class="entry-meta">
                      <ul>
                         <li><%= $self->date->strftime('%Y-%m-%d') %></li>
+                        <!-- We do not yet implement categories
                         <span class="meta-sep">&bull;</span>
                         <li>
                            <a href="#" title="" rel="category tag">Wordpress</a>,
                            <a href="#" title="" rel="category tag">Ghost</a>
                         </li>
+                        -->
                        % if ( $self->author ) {
                            <span class="meta-sep">&bull;</span>
                            <span class="author"><%= $self->author %></span>
@@ -45,23 +47,35 @@
 
                </div>
 
-                <p class="tags">
-                <span>Tagged in: </span>
-                % for my $tag ( $self->tags ) {
-                    <a href="<%= $tag->href %>" rel="tag"><%== $tag->text %></a>
+                % if( $self->tags ) {
+                   <p class="tags">
+                   <span>Tagged in: </span>
+                   % for my $tag ( $self->tags ) {
+                       <a href="<%= $tag->href %>" rel="tag"><%== $tag->text %></a>
+                   % }
+                   </p>
                 % }
-                </p>
 
-                % if ( $self->links( 'crosspost' ) ) {
-                <p class="tags">
-                   <span>Originally posted as: <span>
-                    % for my $link ( $self->links( 'crosspost' ) ) {
-                        <a href="<%= $link->href %>">
-                            <em><%= $self->title %></em> on <%= $link->title %>.
-                        </a>
-                    % }
-                </p>
-                % }
+                % if ( $self->links( 'original' ) ) {
+
+                  %# Make the entries
+                  % my @entries;
+                  % for my $link ( $self->links( 'original' ) ) {
+                     % my $entry = '<a href="' . $link->href . '">' .
+                     %  '<em>' . _escape($self->title) . '</em>';
+                     % $entry .=  ' on ' . _escape($link->title)
+                     %     if($link->title);
+                     % $entry .= '</a>';
+                     % push @entries, $entry;
+                   % }
+
+                   %# Emit them
+                   <p class="tags">
+                      <span>Originally posted as: </span>
+                      %= join('; ', @entries) . '.'
+                   </p>
+
+                % }  # endif $self->links('original')
 
                <ul class="post-nav group">
                    <li class="prev">
@@ -116,17 +130,19 @@
 
             <!-- content tags - this is the list of tags for the sidebar
             ================================================== -->
-            % content tags => begin
-               <div class="widget widget_tags">
-                  <h3>Post Tags.</h3>
+            % if( $self->tags ) {
+               % content tags => begin
+                  <div class="widget widget_tags">
+                     <h3>Post Tags.</h3>
 
-                  <div class="tagcloud group">
-                  % for my $tag ( $self->tags ) {
-                  %# $self => only the tags for this post
-                        <a href="<%= $tag->href %>"><%== $tag->text %></a>
-                  % }
+                     <div class="tagcloud group">
+                     % for my $tag ( $self->tags ) {
+                     %# $self => only the tags for this post
+                           <a href="<%= $tag->href %>"><%== $tag->text %></a>
+                     % }
+                     </div>
                   </div>
-               </div>
-            % end
+               % end
+            % }
 
             <!-- end blog/post.html.ep -->
