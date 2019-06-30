@@ -1,4 +1,4 @@
-.PHONY: all
+.PHONY: all clean fresh serve
 
 all:
 	-mkdir theme
@@ -9,3 +9,6 @@ clean:
 	mkdir theme
 
 fresh: clean all
+
+serve:
+	statocles daemon

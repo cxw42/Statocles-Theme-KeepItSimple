@@ -34,6 +34,10 @@ site:
         # title: This is the title of the site, shown in the <title> tag
         title: 'My Statocles Site'
 
+        # data: Extra data
+        data:
+            tagline: 'A project site'
+
         # base_url: This is the base URL the site will be deployed to. It
         # should be a full URL, and may contain a path, like:
         #
@@ -85,6 +89,8 @@ site:
         # "text", the text of the link, and "href", the URL to link to.
         nav:
             main:
+                - text: 'Home'
+                  href: '/'
                 - text: 'Blog'
                   href: '/blog'
 
@@ -130,6 +136,8 @@ blog_app:
     args:
         url_root: '/blog'
         store: 'blog'
+        tag_text:
+            tag1: "Tag One"
 
 # page_app: These are the settings for the page application.
 page_app:

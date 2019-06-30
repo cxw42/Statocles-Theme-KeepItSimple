@@ -1,5 +1,6 @@
 ---
 title: First Post
+tags: tag1, tag2
 ---
 
 # Welcome To Your Blog
